@@ -7,4 +7,3 @@ python Leer.py "C:\Usuario\Desktop\XMLProcesar"
 Librerias:
 
 pip install openpyxl
-pip install db-sqlite3
