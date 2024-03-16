@@ -9,9 +9,7 @@ import time
 import datetime as dt
 
 
-idEjec=sys.argv[1]
-db=sys.argv[2]
-rutaArchivos=sys.argv[3]
+rutaArchivos=sys.argv[1]
 
 def generaXls(db,id):
     connection = sqlite3.connect(db)
@@ -171,21 +169,6 @@ def generaXls(db,id):
     wb.save(my_path)
     time.sleep(2)
     os.startfile(my_path)
-
-
-def buscarIdSociedad(db,ruc):
-    contador=None
-    conexion=sqlite3.connect(db)
-    contCursor = conexion.cursor()
-    cnt = contCursor.execute("select id  from sociedades where ruc=?",(ruc,))
-    contador = cnt.fetchone()
-    if contador!=None:
-        # print(contador[0])
-        return contador[0]
-    else:
-        return 1
-
-
 def leerXML(path,db,idEjecucion):
     print(path)
     conexion=sqlite3.connect(db)
@@ -334,7 +317,7 @@ def leerXML(path,db,idEjecucion):
                     tipoProveedor="02"
                 
 
-                idSociedadInsertar=buscarIdSociedad(db,ruc)
+                idSociedadInsertar=1
 
                 cur.execute("update documentos set tipoDocumento='"+tipoDoc+"', tipoProveedor='"+tipoProveedor+"', tipoEmision='"+ tipoEmision+"',ambiente='"+ambiente+"',rucProveedor='"+ruc+"',nombreProveedor='"+nombreComercial+"',direccionMatriz='"+dirMatriz+"',direccionEstablecimiento='"+dirEstablecimiento+"',razonSocialP='"+razonSocial+"',tipoIdentificacionC='"+tipoIdentificacionSujetoRetenido+"',rucCliente='"+identificacionSujetoRetenido+"',nombreCliente='"+razonSocialSujetoRetenido+"',establecimiento='"+estab+"',puntoEmision='"+ptoEmi+"',secuencial='"+secuencial+"',fecha='"+fechaEmision+"',totalSinImp='',descuento='',propina='',devolucionIva='',valorTotal='',contrEspecial='"+contribuyenteEspecial+"',obligado='"+obligadoContabilidad+"',microempresa='',rimpe='',agenteRetencion='',ejercicioFiscal='"+periodoFiscal+"',idSociedad="+str(idSociedadInsertar)+" WHERE claveAcceso=?", 
                 (claveAcceso,))
@@ -430,7 +413,7 @@ def leerXML(path,db,idEjecucion):
                 else:
                     tipoProveedor="02"
                 
-                idSociedadInsertar=buscarIdSociedad(db,ruc)
+                idSociedadInsertar=1
                 
                 cur.execute("update documentos set tipoDocumento='"+tipoDoc+"', tipoProveedor='"+tipoProveedor+"', tipoEmision='"+ tipoEmision+"',ambiente='"+ambiente+"',rucProveedor='"+ruc+"',nombreProveedor='"+nombreComercial+"',direccionMatriz='"+dirMatriz+"',direccionEstablecimiento='"+dirEstablecimiento+"',razonSocialP='"+razonSocial+"',tipoIdentificacionC='"+tipoIdentificacionSujetoRetenido+"',rucCliente='"+identificacionSujetoRetenido+"',nombreCliente='"+razonSocialSujetoRetenido+"',establecimiento='"+estab+"',puntoEmision='"+ptoEmi+"',secuencial='"+secuencial+"',fecha='"+fechaEmision+"',totalSinImp='',descuento='',propina='',devolucionIva='',valorTotal='',contrEspecial='"+contribuyenteEspecial+"',obligado='"+obligadoContabilidad+"',microempresa='',rimpe='',agenteRetencion='',ejercicioFiscal='"+periodoFiscal+"' ,idSociedad="+str(idSociedadInsertar)+" WHERE claveAcceso=?", 
                 (claveAcceso,))
@@ -540,7 +523,7 @@ def leerXML(path,db,idEjecucion):
                 tipoProveedor="02"
             
             
-            idSociedadInsertar=buscarIdSociedad(db,ruc)
+            idSociedadInsertar=1
             cur.execute("update documentos set tipoDocumento='"+tipoDoc+"', tipoProveedor='"+tipoProveedor+"', tipoEmision='"+ tipoEmision+"',ambiente='"+ambiente+"',rucProveedor='"+ruc+"',nombreProveedor='"+nombreComercial+"',direccionMatriz='"+dirMatriz+"',direccionEstablecimiento='"+dirEstablecimiento+"',razonSocialP='"+razonSocial+"',tipoIdentificacionC='"+tipoIdentificacionComprador+"',rucCliente='"+identificacionComprador+"',nombreCliente='"+razonSocialComprador+"',establecimiento='"+estab+"',puntoEmision='"+ptoEmi+"',secuencial='"+secuencial+"',fecha='"+fechaEmision+"',totalSinImp='"+totalSinImpuestos+"',descuento='"+descuento+"',propina='"+propina+"',devolucionIva='',valorTotal='"+importeTotal+"',contrEspecial='"+contribuyenteEspecial+"',obligado='"+obligadoContabilidad+"',microempresa='',rimpe='',agenteRetencion='',ejercicioFiscal='' ,idSociedad="+str(idSociedadInsertar)+" WHERE claveAcceso=?", 
             (claveAcceso,))
             conexion.commit()
@@ -626,7 +609,7 @@ def leerXML(path,db,idEjecucion):
                 tipoProveedor="02"
             
             
-            idSociedadInsertar=buscarIdSociedad(db,ruc)
+            idSociedadInsertar=1
 
             cur.execute("update documentos set tipoDocumento='"+tipoDoc+"', tipoProveedor='"+tipoProveedor+"', tipoEmision='"+ tipoEmision+"',ambiente='"+ambiente+"',rucProveedor='"+ruc+"',nombreProveedor='"+nombreComercial+"',direccionMatriz='"+dirMatriz+"',direccionEstablecimiento='"+dirEstablecimiento+"',razonSocialP='"+razonSocial+"',tipoIdentificacionC='"+tipoIdentificacionComprador+"',rucCliente='"+identificacionComprador+"',nombreCliente='"+razonSocialComprador+"',establecimiento='"+estab+"',puntoEmision='"+ptoEmi+"',secuencial='"+secuencial+"',fecha='"+fechaEmision+"',totalSinImp='"+totalSinImpuestos+"',descuento='"+descuento+"',propina='"+propina+"',devolucionIva='',valorTotal='"+importeTotal+"',contrEspecial='"+contribuyenteEspecial+"',obligado='"+obligadoContabilidad+"',microempresa='',rimpe='',agenteRetencion='',ejercicioFiscal='' ,idSociedad="+str(idSociedadInsertar)+" WHERE claveAcceso=?", 
             (claveAcceso,))
@@ -729,7 +712,7 @@ def leerXML(path,db,idEjecucion):
                 tipoProveedor="02"
 
 
-            idSociedadInsertar=buscarIdSociedad(db,ruc)
+            idSociedadInsertar=1
             cur.execute("update documentos set tipoDocumento='"+tipoDoc+"', tipoProveedor='"+tipoProveedor+"', tipoEmision='"+ tipoEmision+"',ambiente='"+ambiente+"',rucProveedor='"+ruc+"',nombreProveedor='"+nombreComercial+"',direccionMatriz='"+dirMatriz+"',direccionEstablecimiento='"+dirEstablecimiento+"',razonSocialP='"+razonSocial+"',tipoIdentificacionC='"+tipoIdentificacionComprador+"',rucCliente='"+identificacionComprador+"',nombreCliente='"+razonSocialComprador+"',establecimiento='"+estab+"',puntoEmision='"+ptoEmi+"',secuencial='"+secuencial+"',fecha='"+fechaEmision+"',totalSinImp='"+totalSinImpuestos+"',descuento='"+descuento+"',propina='"+propina+"',devolucionIva='',valorTotal='"+importeTotal+"',contrEspecial='"+contribuyenteEspecial+"',obligado='"+obligadoContabilidad+"',microempresa='',rimpe='',agenteRetencion='',ejercicioFiscal='' ,idSociedad="+str(idSociedadInsertar)+" WHERE claveAcceso=?", 
             (claveAcceso,))
             conexion.commit()
@@ -762,11 +745,18 @@ def leerXML(path,db,idEjecucion):
         
             cur.execute("UPDATE documentos set observacion='OK' WHERE id=?",(idDocumento,))
             conexion.commit()
-
 path = rutaArchivos
 dir_list = os.listdir(path)
 
+db="BDSRI.s3db"
+conexion1=sqlite3.connect(db)
+cur = conexion1.cursor()
+current_date = dt.datetime.now()
+fechaActual=current_date.strftime("%d/%m/%Y")#Path 
+insert=cur.execute("insert into ejecucion(fecha) values (?)",(fechaActual,))
+conexion1.commit()
+idEjec=insert.lastrowid
+conexion1.close()
 for file in dir_list:
     leerXML(rutaArchivos+"\\"+file,db,idEjec)
-
 generaXls(db,idEjec)
